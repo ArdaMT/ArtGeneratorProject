@@ -1,4 +1,4 @@
-/* Added to project for KE2 by Gundula Swidersky
+/* A
  * Class GenDblTextField
  * =================
  * The SGTextField class extends the TextField control to make sure that only
@@ -32,7 +32,7 @@ public class GenDblTextField extends TextField {
         if(getText().isEmpty()) {
             return 0;
         } else {
-            return Double.valueOf(getText());
+            return Double.parseDouble(getText());
         }
 
     }

@@ -9,6 +9,7 @@ import CommonUtils.GenTextField;
 import Generators.RandomFunctionTree.Functions.FunctionGenerator;
 import MainWindow.Application;
 import MainWindow.MainStatus;
+import MainWindow.MainWindow;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -72,12 +73,12 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
     private void initLabels() {
         lblExplanation=new Label("This program generates colourful images and shapes.   " +
                 "\nLower values for depth produce more interesting results.  " +
-                "\nYou can generate a single image or a series of 9 images. " +
-                "\nOnce the images appear on the screen, you can select one" +
-                "\nand save it. If you choose the \"save as\" option, program" +
-                "\nsuggests this file name: depth_seed_hue.png. These metrics" +
-                "\ncan be used to recreate the same image, when generating a" +
-                "\ncustom image with the help of the designated checkbox. ");
+                "\nYou can generate a single image or a series of 9 images.  " +
+                "\nOnce the images appear on the screen, you can select   " +
+                "\none and save it. If you choose the \"save as\" option,  " +
+                "\nprogram suggests this file name: depth_seed_hue.png.   " +
+                "\nThe metrics from the file name can be used to recreate     " +
+                "\nthe same image, when generating a custom image. ");
         lblExplanation.setFont(Font.font("verdana",12));
         lblHeight = new Label("Canvas Height (50-800): ");
         lblHeight.setFont(Font.font("verdana",12));
@@ -139,9 +140,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
             e.consume();
             generate();
         });
-        automaticGeneratorButton.setOnAction(e -> {
-                    automaticGenerate();
-                }
+        automaticGeneratorButton.setOnAction(e -> automaticGenerate()
         );
         customImageBox.setOnAction(e -> {
             if (customImageBox.isSelected()) {
@@ -165,7 +164,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
         setStopParameters();
         Application.getMainWindow().setStatus(name + " " + MainStatus.GENERATE.toString());
         Application.getMainWindow().setSaveMenuDisabled(false);
-        Application.getMainWindow().saveAs.setDisable(false);
+        MainWindow.saveAs.setDisable(false);
         if (isInputValid()) {
             //compute depth using the min and max.  values for depth, if the image is not customised.
             if (!customImageBox.isSelected()) {
@@ -184,19 +183,24 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
 
     //generate 9 automatic images
     private void automaticGenerate() {
-        if (isInputValid()) {
+        if(customImageBox.isSelected()){
+            JOptionPane.showMessageDialog(null, "Please uncheck the \"Create a custom image\" checkbox first.");
+            setAlwaysOnTop(true);
+
+        }
+       else{ if (isInputValid()) {
             clearCanvas(canvas);
             setStopParameters();
             Application.getMainWindow().setStatus(name + " " + MainStatus.GENERATE.toString());
             Application.getMainWindow().setSaveMenuDisabled(false);
-            Application.getMainWindow().saveAs.setDisable(false);
+            MainWindow.saveAs.setDisable(false);
             //each miniature image has a size of 200x200. there is an empty space of 10 pixel  between the images
             canvas.setWidth(620);
             canvas.setHeight(620);
             setSeedDeptHueForNine();
         } else {
             setAlwaysOnTop(true);
-        }
+        }}
     }
 
     private void setSeedDeptHueForNine() {
@@ -504,7 +508,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
         if (rn == null) {
             rn = new Random();
         }
-        return mindep + rn.nextInt(maxdep - mindep) + mindep;
+        return 1 + rn.nextInt(maxdep - mindep) + mindep;
     }
     //locates the x and y coordinates of a mouse click on the selected image among the series of 9 images.
     private int chooseImage(int x, int y) {

@@ -2,7 +2,7 @@
 package MainWindow;
 
 /**
- * Added to project for KE2 by Gundula Swidersky
+ *
  * Enum for handling of Generator status that will be set in the main window.
  */
     public enum MainStatus {
