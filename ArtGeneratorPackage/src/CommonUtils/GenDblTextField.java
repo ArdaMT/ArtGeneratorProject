@@ -1,4 +1,4 @@
-/* Added to project for KE2 by Gundula Swidersky
+/* 
  * Class GenDblTextField
  * =================
  * The SGTextField class extends the TextField control to make sure that only
