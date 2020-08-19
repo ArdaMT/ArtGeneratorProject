@@ -102,7 +102,7 @@ public class MainWindow extends Stage {
 
         Scene scene = new Scene(pane, WIDTH, HEIGHT);
 
-        setTitle("Kurseinheit 4");
+        setTitle("Art Generator");
         setScene(scene);
 
         //EventHandler der MenuItems mit Lamdas realisiert
