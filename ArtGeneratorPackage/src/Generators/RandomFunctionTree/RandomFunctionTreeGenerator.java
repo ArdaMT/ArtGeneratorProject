@@ -193,6 +193,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
             setStopParameters();
             Application.getMainWindow().setStatus(name + " " + MainStatus.GENERATE.toString());
             Application.getMainWindow().setSaveMenuDisabled(false);
+
             MainWindow.saveAs.setDisable(false);
             //each miniature image has a size of 200x200. there is an empty space of 10 pixel  between the images
             canvas.setWidth(620);
