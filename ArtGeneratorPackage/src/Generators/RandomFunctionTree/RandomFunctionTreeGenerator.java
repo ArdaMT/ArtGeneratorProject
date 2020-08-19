@@ -213,7 +213,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
             seedArray[i] = Math.abs((int) System.currentTimeMillis() * a);
             rn = new Random(seedArray[i]);
             a += 1;
-            depthArray[i] = 1 + rn.nextInt(maxDepth - minDepth) + minDepth;
+            depthArray[i] = rn.nextInt(maxDepth - minDepth+1) + minDepth;
             if (isEmpty(tfHue)) {
                 hueArray[i] = rn.nextInt(360);
             } else {
@@ -509,7 +509,7 @@ public class RandomFunctionTreeGenerator extends Generators.Generator {
         if (rn == null) {
             rn = new Random();
         }
-        return 1 + rn.nextInt(maxdep - mindep) + mindep;
+        return rn.nextInt(maxdep - mindep+1) + mindep;
     }
     //locates the x and y coordinates of a mouse click on the selected image among the series of 9 images.
     private int chooseImage(int x, int y) {
